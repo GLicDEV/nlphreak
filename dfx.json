@@ -1,0 +1,37 @@
+{
+  "canisters": {
+    "nlphreak": {
+      "build": "./build.sh",
+      "candid": "src/nlphreak/nlphreak.did",
+      "wasm": "target/wasm32-unknown-unknown/release/nlphreak_opt.wasm",
+      "type": "custom"
+    },
+    "nlphreak_assets": {
+      "dependencies": [
+        "nlphreak"
+      ],
+      "frontend": {
+        "entrypoint": "src/nlphreak_assets/src/index.html"
+      },
+      "source": [
+        "src/nlphreak_assets/assets",
+        "dist/nlphreak_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.8.1",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}

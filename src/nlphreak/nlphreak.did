@@ -1,0 +1,40 @@
+type Profile = record {
+    "name": text;
+    "max_score": nat32;
+    "games": vec nat32;
+};
+
+type GameState = variant {
+    New;
+    Asked;
+    Answered;
+};
+
+type Game = record {
+    "id": nat32;
+    "keywords": vec text;
+    "points": vec nat8;
+    "found": vec bool;
+    "score": nat32;
+    "questions": vec text;
+    "answers": vec text;
+    "principal_str": text;
+    "state": GameState;
+};
+
+type Result = record {
+    "payload": text;
+    "ok": bool;
+};
+
+service : {
+    "getSelf": () -> (Profile) query;
+    "update": (text) -> (Result);
+    "clearAll": () -> ();
+    "listAllGames": () -> (vec Game) query;
+    "startGame": () -> (Result);
+    "addQuestions": (nat32, vec text) -> (Result);
+    "getGame": (nat32) -> (Game) query;
+    "getAsked": () -> (vec nat32) query;
+    "addAnswers": (nat32, vec text) -> (Result);
+}
